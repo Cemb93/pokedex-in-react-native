@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 
 const PokemonDetail = ({ route }) => {
   const { pokemon } = route.params;
@@ -11,6 +11,20 @@ const PokemonDetail = ({ route }) => {
       <Text style={styles.name}>{pokemon.name}</Text>
       <Text style={styles.info}>Height: {pokemon.height}</Text>
       <Text style={styles.info}>Weight: {pokemon.weight}</Text>
+      <Text style={styles.info}>Abilities:
+        {<FlatList
+          data={pokemon.abilities}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => <Text style={styles.info}> ✔{item}</Text>}
+        />}
+      </Text>
+      <Text style={styles.info}>Types:
+        {<FlatList
+          data={pokemon.types}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => <Text style={styles.info}> ⭐{item}</Text>}
+        />}
+      </Text>
     </View>
   );
 }
